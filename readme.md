@@ -1,8 +1,8 @@
-# Project 3 - *Name of App Here*
+# Project 3 - Parsetagramn
 
-**Name of your app** is a photo sharing app similar to Instagram but using Parse as its backend.
+Parsetagramnis a photo sharing app similar to Instagram but using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: 8 hours spent in total
 
 ## User Stories
 
@@ -27,9 +27,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+<img src='walkthroughParsetagram.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'/>
 
 ## Notes
 
@@ -42,7 +40,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2022] [Andrew Wu]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
