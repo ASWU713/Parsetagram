@@ -66,8 +66,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error saving post", Toast.LENGTH_SHORT).show()
             } else{
                 Log.i(TAG, "Succesfully saved post")
-                //TODO: resetting edit text field to be empty
-                //TODO: reset the ImageView to empty
+                Toast.makeText(this, "Successful Post", Toast.LENGTH_LONG).show()
+                findViewById<EditText>(R.id.etDescription).setText("")
+                findViewById<ImageView>(R.id.ivImage).setImageBitmap(null)
             }
         }
     }
