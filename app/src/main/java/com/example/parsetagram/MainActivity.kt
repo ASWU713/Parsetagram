@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.parse.*
 import java.io.File
 
@@ -46,6 +47,30 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.takePicBtn).setOnClickListener {
             onLaunchCamera()
+        }
+
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
+            item->
+
+            when(item.itemId){
+                R.id.action_home -> {
+                    //TODO navigate to the home screen
+                    Toast.makeText(this, "Home", Toast.LENGTH_LONG).show()
+                }
+
+                R.id.action_compose -> {
+                    //TODO navigate to the home screen
+                    Toast.makeText(this, "Compose", Toast.LENGTH_LONG).show()
+                }
+
+                R.id.action_profile -> {
+                    //TODO navigate to the home screen
+                    Toast.makeText(this, "Profile", Toast.LENGTH_LONG).show()
+                }
+
+            }
+            //Return true to say we've handled this user iteration on the item
+            true
         }
 
 //        queryPosts()
