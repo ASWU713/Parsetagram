@@ -17,7 +17,7 @@ import com.parse.ParseException
 import com.parse.ParseQuery
 
 
-class FeedFragment : Fragment() {
+open class FeedFragment : Fragment() {
 
     lateinit var postsRecyclerView: RecyclerView
 
@@ -61,6 +61,7 @@ class FeedFragment : Fragment() {
         query.include(Post.KEY_USER)
         //return posts in descending order
         query.addDescendingOrder("createdAt")
+        //TODO only return most recent 20 posts
         query.findInBackground(object: FindCallback<Post> {
             override fun done(posts: MutableList<Post>?, e: ParseException?){
                 if(e != null){
@@ -83,4 +84,6 @@ class FeedFragment : Fragment() {
     companion object{
         const val TAG = "FeedFragment "
     }
+
+    open fun queryPost() {}
 }

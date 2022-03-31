@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.parsetagram.fragments.ComposeFragment
 import com.example.parsetagram.fragments.FeedFragment
+import com.example.parsetagram.fragments.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.parse.*
 import java.io.File
@@ -44,8 +45,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.action_profile -> {
-                    //TODO navigate to the home screen
-                    Toast.makeText(this, "Profile", Toast.LENGTH_LONG).show()
+                    fragmentToShow = ProfileFragment()
                 }
             }
             if(fragmentToShow != null){
