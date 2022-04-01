@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.parsetagram.MainActivity
 import com.example.parsetagram.Post
 import com.example.parsetagram.PostAdapter
@@ -22,6 +23,8 @@ open class FeedFragment : Fragment() {
     lateinit var postsRecyclerView: RecyclerView
 
     lateinit var adapter: PostAdapter
+
+    lateinit var swipeContainer: SwipeRefreshLayout
 
     var allPosts: MutableList<Post> = mutableListOf()
 
@@ -38,6 +41,16 @@ open class FeedFragment : Fragment() {
         //This is where we set up our views and click listeners
 
         postsRecyclerView = view.findViewById(R.id.postRecyclerView)
+        swipeContainer = view.findViewById(R.id.swipeContainer)
+        swipeContainer.setOnRefreshListener {
+            queryPosts()
+        }
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+            android.R.color.holo_green_light,
+            android.R.color.holo_orange_light,
+            android.R.color.holo_red_light)
+
+
 
         //Steps to populate RecyclerView
         //1. Create layout for each row in list
@@ -54,14 +67,15 @@ open class FeedFragment : Fragment() {
     }
 
     //query for all posts in our server
-    fun queryPosts(){
+    open fun queryPosts(){
         //specify which class to query
         val query: ParseQuery<Post> = ParseQuery.getQuery(Post::class.java)
         //Find all post objects
         query.include(Post.KEY_USER)
         //return posts in descending order
         query.addDescendingOrder("createdAt")
-        //TODO only return most recent 20 posts
+        //only return most recent 20 posts
+        query.setLimit(POST_LIMIT)
         query.findInBackground(object: FindCallback<Post> {
             override fun done(posts: MutableList<Post>?, e: ParseException?){
                 if(e != null){
@@ -70,11 +84,13 @@ open class FeedFragment : Fragment() {
                 }else{
                     if(posts != null){
                         for(post in posts){
-                            Log.i(TAG, "Post: " + post.getDescription() + " , username: " +
-                                    post.getUser()?.username)
+//                            Log.i(TAG, "Post: " + post.getDescription() + " , username: " +
+//                                    post.getUser()?.username)
                         }
+                        adapter.clear()
                         allPosts.addAll(posts)
-                        adapter.notifyDataSetChanged()
+                        swipeContainer.setRefreshing(false)
+//                        adapter.notifyDataSetChanged()
                     }
                 }
             }
@@ -83,6 +99,7 @@ open class FeedFragment : Fragment() {
 
     companion object{
         const val TAG = "FeedFragment "
+        const val POST_LIMIT = 20
     }
 
     open fun queryPost() {}
