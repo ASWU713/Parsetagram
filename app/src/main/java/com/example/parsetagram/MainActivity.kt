@@ -47,6 +47,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_profile -> {
                     fragmentToShow = ProfileFragment()
                 }
+
+                R.id.action_logout -> {
+                    ParseUser.logOut()
+                    goToLoginActivity()
+                }
             }
             if(fragmentToShow != null){
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragmentToShow).commit()
@@ -55,8 +60,14 @@ class MainActivity : AppCompatActivity() {
             true
         }
         findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_home
-//        queryPosts()
+
     }
+    private fun goToLoginActivity() {
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 
 
     companion object{

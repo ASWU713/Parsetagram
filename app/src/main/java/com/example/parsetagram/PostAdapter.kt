@@ -10,7 +10,7 @@ import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class PostAdapter(val context: Context, val posts: List<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>(){
+class PostAdapter(val context: Context, val posts: MutableList<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostAdapter.ViewHolder {
         //specify the layout file to use for this item
         val view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false)
@@ -24,6 +24,16 @@ class PostAdapter(val context: Context, val posts: List<Post>) : RecyclerView.Ad
 
     override fun getItemCount(): Int {
         return posts.size
+    }
+
+    fun clear() {
+        posts.clear()
+        notifyDataSetChanged()
+    }
+
+    fun addAll(postList: MutableList<Post>) {
+        posts.addAll(postList)
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

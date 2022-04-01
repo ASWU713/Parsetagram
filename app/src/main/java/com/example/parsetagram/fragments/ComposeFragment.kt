@@ -80,6 +80,7 @@ class ComposeFragment : Fragment() {
             } else{
                 Log.i(MainActivity.TAG, "Succesfully saved post")
                 Toast.makeText(requireContext(), "Successful Post", Toast.LENGTH_LONG).show()
+
             }
         }
     }
